@@ -1,0 +1,2120 @@
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.517018,
+Voting 1, test acc: 93.192869,
+Voting 2, test acc: 93.192869,
+Voting 3, test acc: 93.111831,
+Voting 4, test acc: 92.828201,
+Voting 5, test acc: 93.395462,
+Voting 6, test acc: 92.990276,
+Voting 7, test acc: 93.192869,
+Voting 8, test acc: 93.111831,
+Voting 9, test acc: 93.557536,
+Voting 10, test acc: 93.152350,
+Voting 11, test acc: 93.679092,
+Voting 12, test acc: 93.395462,
+Voting 13, test acc: 93.233387,
+Voting 14, test acc: 93.192869,
+Voting 15, test acc: 93.152350,
+Voting 16, test acc: 93.354943,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.517018,
+Voting 1, test acc: 93.192869,
+Voting 2, test acc: 93.192869,
+Final voting test acc: 93.517018,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.517018,
+Final voting test acc: 93.517018,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.517018,
+Final voting test acc: 93.517018,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.517018,
+Final voting test acc: 93.517018,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.598055,
+Final voting test acc: 93.598055,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.598055,
+Final voting test acc: 93.598055,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.598055,
+Final voting test acc: 93.598055,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.598055,
+Final voting test acc: 93.598055,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.598055,
+Final voting test acc: 93.598055,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.598055,
+Final voting test acc: 93.598055,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+Voting 0, test acc: 93.598055,
+Final voting test acc: 93.598055,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 16
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using GPU
+Voting 0, test acc: 91.933522,
+Final voting test acc: 91.933522,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 91.933522,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 2
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using CPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 1024
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 91.933522,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2048
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 91.122821,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 7.742197,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 85.772193,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 85.772193,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 85.772193,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 85.772193,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 500
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 7.742197,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 7.742197,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 91.001216,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 91.001216,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 2040
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: None
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: None
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: None
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: None
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 5
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: None
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: None
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: None
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: None
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Voting 0, test acc: 0.810373,
+Final voting test acc: 0.810373,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 3
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 32.038835,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Voting 0, test acc: 0.810373,
+Final voting test acc: 0.810373,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Voting 0, test acc: 0.810373,
+Final voting test acc: 0.810373,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 2
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+Final voting test acc: 0.000000,
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 1
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU
+arch: dgcnn
+calc_scores: softmax
+dropout: 0.5
+eval: True
+exp_name: dgcnn_paconv_test
+k_neighbors: 20
+manual_seed: 0
+no_cuda: False
+num_matrices: [8, 8, 8, 8]
+num_points: 100
+test_batch_size: 1
+workers: 6
+Using GPU

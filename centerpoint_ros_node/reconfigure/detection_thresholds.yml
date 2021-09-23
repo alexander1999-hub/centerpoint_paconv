@@ -1,0 +1,15 @@
+# nuScenes configs
+car: 0.4
+truck: 0.6
+construction: 0.6
+bus: 0.5
+trailer: 0.6 
+barrier: 0.7
+motorcycle: 0.4
+bicycle: 0.4
+pedestrian: 0.1
+traffic: 0.4
+# WAYMO configs
+VEHICLE: 0.4
+PEDESTRIAN: 0.11
+CYCLIST: 0.12

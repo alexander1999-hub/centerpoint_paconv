@@ -1,0 +1,74 @@
+<launch>
+    <arg name="name" default="centerpoint_ros_node" />
+
+    <!-- ROS topics settings -->
+    <arg name="pointcloud" default="velodyne_points" />
+    <arg name="objects" default="lidar_objects" />
+
+    <!-- Performance settings -->
+    <arg name="frame_skip_diff" default="0.2" doc="Allows frame skipping if current ros time differs from data stamp" />
+    <arg name="input_buffer_size" default="32768" doc="Buffer size for topic with lidar clouds in MBs" />
+    
+    <!-- TF settings -->
+    <arg name="fixed_frame" default="local_map" />
+
+    <!-- Settings for filtering input point cloud -->
+    <arg name="filter_x_range" default="1." />
+    <arg name="filter_y_range" default="1." />    
+
+    <!-- Pedestrian filtering range -->
+    <arg name="filter_pedestrian_range" default="15." />
+
+    <!-- Tracker type -->
+    <arg name="orient_jump_threshold" default="0.261799388" />
+
+    <!-- Trajectory Factory settings -->
+    <arg name="max_jump_distance" default="2" doc="distance for thresholding object's 'jumps'"/>
+    <arg name="max_object_timeout_sec" default="5" doc="time threshold for deleting objects"/>
+    <arg name="max_stored_points" default="100" doc="number of points in trajectory buffer"/>
+    <arg name="trajectory_size_sec" default="10" doc="length of visualized trajectory in seconds"/>
+    <arg name="trajectory_period_sec" default="1" doc="period between points in visualized trajectory"/>
+
+    <!-- Visualization settings -->
+    <arg name="publish_markers" default="True" />
+    <arg name="color_by" default="class" doc="color visualized bboxes by 'id' or 'class'"/>
+
+    <!-- CenterPoint model's settings -->
+    <arg name="config_path" default="$(find centerpoint_ros_node)/configs/waymo/pp/waymo_centerpoint_pp_two_pfn_stride1_3x_25m.py" />
+    <arg name="model_path" default="$(find centerpoint_ros_node)/models/pointpillars_waymo.pth" />
+    <arg name="inference_params" default="$(find centerpoint_ros_node)/launch/params/inference_params.yaml" />
+    <rosparam command="load" file="$(arg inference_params)" ns="$(arg name)"/>
+
+    <node name="$(arg name)" pkg="centerpoint_ros_node" type="single_inference_trajectory.py">
+        <remap from="pointcloud" to="$(arg pointcloud)" />
+        <remap from="objects" to="$(arg objects)" />
+
+        <param name="frame_skip_diff" value="$(arg frame_skip_diff)" />
+        <param name="input_buffer_size" value="$(arg input_buffer_size)" />
+
+        <param name="config_path" value="$(arg config_path)" />
+        <param name="model_path" value="$(arg model_path)" />
+
+        <param name="fixed_frame" value="$(arg fixed_frame)" />
+        
+        <param name="filter_x_range" value="$(arg filter_x_range)" />
+        <param name="filter_y_range" value="$(arg filter_y_range)" />
+
+        <param name="filter_pedestrian_range" value="$(arg filter_pedestrian_range)" />
+
+        <param name="orient_jump_threshold" value="$(arg orient_jump_threshold)" />
+
+        <param name="max_jump_distance" value="$(arg max_jump_distance)" />
+        <param name="max_object_timeout_sec" value="$(arg max_object_timeout_sec)" />
+        <param name="max_stored_points" value="$(arg max_stored_points)" />
+        <param name="trajectory_size_sec" value="$(arg trajectory_size_sec)" />
+        <param name="trajectory_period_sec" value="$(arg trajectory_period_sec)" />
+
+        <rosparam command="load" file="$(find centerpoint_ros_node)/reconfigure/detection_thresholds.yml" />
+        
+        <param name="publish_markers" value="$(arg publish_markers)" />
+        <param name="color_by" value="$(arg color_by)" />
+
+    </node>
+
+</launch>

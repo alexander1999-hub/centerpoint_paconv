@@ -1,0 +1,5 @@
+# ninja log v5
+0	9130	1624266830607176735	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/dcn/build/temp.linux-x86_64-3.8/src/deform_conv_cuda_kernel.o	b7605641cfe5717c
+0	18528	1624266882371861491	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/dcn/build/temp.linux-x86_64-3.8/src/deform_conv_cuda.o	5797cdeac807e749
+0	8360	1627978046545307456	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/dcn/build/temp.linux-x86_64-3.8/src/deform_conv_cuda_kernel.o	89b5f4cfea898203
+0	17105	1627978055285244944	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/dcn/build/temp.linux-x86_64-3.8/src/deform_conv_cuda.o	5797cdeac807e749

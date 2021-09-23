@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/cds-josh/CenterPoint_ws/devel/include/**",
+                "/opt/ros/noetic/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu18",
+            "cppStandard": "gnu++14"
+        }
+    ],
+    "version": 4
+}

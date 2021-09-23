@@ -1,0 +1,7 @@
+inference_params:
+  post_center_limit_range: [-30.00, -30.00, -1, 30.00, 30.00, 3.0]
+  model:
+    reader:
+      voxel_size: [0.32, 0.32, 4]
+      pc_range: [-25.60, -25.60, -1, 25.60, 25.60, 3.0]
+# 25.60 19.2 15.36 12.8

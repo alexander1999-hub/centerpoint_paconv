@@ -1,0 +1,135 @@
+ARG BASE_IMAGE=nvcr.io/nvidia/l4t-pytorch:r32.5.0-pth1.7-py3 
+FROM ${BASE_IMAGE}
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+#install required libs and packages
+RUN apt-get update  && apt-get install -y --no-install-recommends wget build-essential git curl \
+	ca-certificates libjpeg-dev libpng-dev python3-pip cmake gnupg2 lsb-release ninja-build
+
+# Building LLVM
+RUN wget http://releases.llvm.org/7.0.1/llvm-7.0.1.src.tar.xz \
+	&& tar -xvf llvm-7.0.1.src.tar.xz \
+	&& cd llvm-7.0.1.src \
+	&& mkdir llvm_build_dir \
+	&& cd llvm_build_dir/  \
+	&& cmake ../ -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="ARM;X86;AArch64" \
+	&& make -j4 \
+	&& make install \
+	&& cd bin/ \
+	&& echo "export LLVM_CONFIG=\""`pwd`"/llvm-config\"" >> ~/.bashrc \
+	&& echo "alias llvm='"`pwd`"/llvm-lit'" >> ~/.bashrc \
+	&& /bin/bash -c "source ~/.bashrc" \
+	&& pip3 install llvmlite==0.30.0 
+
+# ROS Noetic installation
+ARG ROS_PKG=ros_base
+ENV ROS_DISTRO=noetic
+ENV ROS_ROOT=/opt/ros/${ROS_DISTRO}
+ENV ROS_PYTHON_VERSION=3
+
+WORKDIR /workspace
+
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' \
+	&& apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+# install bootstrap dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+          libpython3-dev \
+          python3-rosdep \
+          python3-rosinstall-generator \
+          python3-vcstool \
+          build-essential && \
+    rosdep init && \
+    rosdep update
+
+# download/build the ROS source
+RUN mkdir ros_catkin_ws && \
+    cd ros_catkin_ws && \
+    rosinstall_generator ${ROS_PKG} vision_msgs --rosdistro ${ROS_DISTRO} --deps --tar > ${ROS_DISTRO}-${ROS_PKG}.rosinstall && \
+    mkdir src && \
+    vcs import --input ${ROS_DISTRO}-${ROS_PKG}.rosinstall ./src && \
+    apt-get update && \
+    rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro ${ROS_DISTRO} -y && \
+    python3 ./src/catkin/bin/catkin_make_isolated --install --install-space ${ROS_ROOT} -DCMAKE_BUILD_TYPE=Release
+
+# setup entrypoint
+RUN echo 'source ${ROS_ROOT}/setup.bash' >> /root/.bashrc
+
+RUN python3 -m pip install pip --upgrade
+RUN pip3 install setuptools Cython wheel pyyaml ipython pathlib
+RUN pip3 install numpy --verbose
+
+RUN pip3 install cmake
+
+# SpConv installation
+RUN git clone https://github.com/traveller59/spconv.git --recursive \
+    && cd spconv  \
+ 	#&& git checkout 7342772  \
+	&& python3 setup.py bdist_wheel  \
+	&& cd ./dist  \
+	&& pip install *  \
+	&& cd ../..  
+
+# # Apex installation
+WORKDIR /tmp/unique_for_apex
+RUN git clone https://github.com/NVIDIA/apex.git  \
+ 	&& cd apex \
+ 	&& git checkout 5633f6
+WORKDIR /tmp/unique_for_apex/apex
+RUN python3 setup.py install
+#RUN rm -rf /tmp/unique_for_apex
+
+# installing ROS and centerpoint packages  
+RUN	pip install rospkg scipy matplotlib protobuf pybind11 fire joblib easydict open3d-python terminaltables \
+	pytest-runner addict pycocotools objgraph cachetools descartes Pillow pyquaternion pandas motmetrics \
+	tqdm requests empy rosdep filterpy numba==0.46
+
+# Building ROS numpy
+RUN git clone https://github.com/eric-wieser/ros_numpy.git \
+	&& cd ros_numpy  \
+	&& python3 setup.py install \
+	&& cd .. \ 
+	&& rm -r ros_numpy
+
+# Move them to the top
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+		libbullet-dev \ 
+		python3-psutil \
+		python3-future \
+		libeigen3-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp/
+
+# Install KDL
+RUN git clone https://github.com/orocos/orocos_kinematics_dynamics.git \
+	&& cd orocos_kinematics_dynamics/orocos_kdl \
+	&& git submodule update --init \
+	&& mkdir build \
+	&& cd build \
+	&& export ROS_PYTHON_VERSION="3" \
+	&& cmake .. \
+	&& make \ 
+	&& make install
+	
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+RUN ldconfig 
+
+# Add user
+ARG USER=docker_centerpoint
+ARG UID=1000
+ARG GID=1000
+# default password
+ARG PW=user 
+
+RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | chpasswd && adduser ${USER} sudo && usermod -a -G video ${USER}
+
+WORKDIR /home/${USER}
+RUN cd /home/${USER} && mkdir -p catkin_ws/src && chown -R ${UID}:${GID} ./
+USER ${UID}:${GID}
+
+# Check GPU 
+RUN python3 -c 'import torch; print(torch.cuda.is_available())'

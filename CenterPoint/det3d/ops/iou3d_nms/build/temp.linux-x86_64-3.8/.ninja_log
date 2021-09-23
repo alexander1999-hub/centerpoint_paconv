@@ -1,0 +1,9 @@
+# ninja log v5
+0	1993	1624266841123315952	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/iou3d_nms/build/temp.linux-x86_64-3.8/src/iou3d_nms_kernel.o	b240b9df4b53b0f9
+0	9106	1624266848239410125	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/iou3d_nms/build/temp.linux-x86_64-3.8/src/iou3d_cpu.o	b6ed016f0ebd945e
+0	9705	1624266848835418012	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/iou3d_nms/build/temp.linux-x86_64-3.8/src/iou3d_nms.o	2310539037231d03
+2	15973	1624266899820092018	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/iou3d_nms/build/temp.linux-x86_64-3.8/src/iou3d_nms_api.o	1e6b965ca9e4e905
+0	1792	1627978058465222153	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/iou3d_nms/build/temp.linux-x86_64-3.8/src/iou3d_nms_kernel.o	d0c2b4164caf6c5d
+0	8422	1627978065097174543	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/iou3d_nms/build/temp.linux-x86_64-3.8/src/iou3d_cpu.o	b6ed016f0ebd945e
+0	8745	1627978065421172214	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/iou3d_nms/build/temp.linux-x86_64-3.8/src/iou3d_nms.o	2310539037231d03
+0	14857	1627978071529128267	/home/docker_centerpoint/catkin_ws/src/centerpoint/CenterPoint/det3d/ops/iou3d_nms/build/temp.linux-x86_64-3.8/src/iou3d_nms_api.o	1e6b965ca9e4e905
