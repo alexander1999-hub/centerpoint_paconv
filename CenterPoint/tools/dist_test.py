@@ -13,7 +13,9 @@ import numpy as np
 import torch
 import yaml
 from det3d import torchie
+from scipy.spatial.transform import Rotation as R
 from det3d.datasets import build_dataloader, build_dataset
+from det3d.datasets.nuscenes.nusc_common import get_sample_data
 from det3d.models import build_detector
 from det3d.torchie import Config
 from det3d.torchie.apis import (
@@ -30,7 +32,7 @@ from torch.nn.parallel import DistributedDataParallel
 import pickle 
 import time 
 from scripts.Dataset import get_boxes_from_pred_frame
-#from scipy.spatial import ConvexHull
+from scipy.spatial import ConvexHull
 from shapely.geometry import Polygon
 import os
 import open3d as o3d
@@ -38,8 +40,8 @@ from open3d import *
 from util.util import cal_loss, IOStream, load_cfg_from_cfg_file, merge_cfg_from_list
 from model.my_DGCNN_PAConv import PAConv
 import torch.nn as nn
-
-device_o3d = o3d.core.Device("CUDA:0")
+from nuscenes.nuscenes import NuScenes
+nusc = NuScenes(version='v1.0-trainval', dataroot='./data/nuScenes', verbose=True)
 
 
 def get_parser():
@@ -64,6 +66,13 @@ def define_models():
     model_pedestrians = model_pedestrians.eval()
 
     return model_vehicles, model_pedestrians, device
+
+def load_cloud_from_nuscenes_file(pc_f):
+    num_features = 5
+    cloud = np.fromfile(pc_f, dtype=np.float32, count=-1).reshape([-1, num_features])
+    # last dimension should be the timestamp.
+    cloud[:, 4] = 0
+    return cloud
 
 def define_model_4cls():
     device = torch.device('cuda:0')
@@ -282,7 +291,7 @@ def my_box_center_to_corner_pred(box, parameter):
     l = box[3] * (1 + parameter)
     w = box[4] * (1 + parameter)
     h = box[5] * (1 + parameter)
-    rotation = -1 * box[6]
+    rotation = -box[6]
     z_axis = 1/2 * torch.cuda.FloatTensor([-h,-h,-h,-h,h,h,h,h])
     #print(rotation)
 
@@ -300,13 +309,79 @@ def my_box_center_to_corner_pred(box, parameter):
     temp3 = temp2 + translation
     return temp3.transpose(0,1)
 
+def my_box_center_to_corner_gt(sample, parameter, pcd_gpu, nuscenes, list_for_vis):
+    gt_boxes_list = []
+    gt_classes_list = []
+    gt_points_list = []
+    lines = [[0, 1], [0, 2], [1, 3], [2, 3], [4, 5], [4, 6], [5, 7], [6, 7],
+             [0, 4], [1, 5], [2, 6], [3, 7]]
+    colors_gt = [[1, 0, 0] for i in range(len(lines))]
+    lidar = nusc.get('sample_data', sample['data']['LIDAR_TOP'])
+    anno_objects = get_sample_data(nusc, lidar['token'])[1]
+    points_new = np.asarray(pcd_gpu.points)
+    #points_new = load_cloud_from_nuscenes_file('./data/nuScenes/' + lidar['filename'])[:,0:3]
+    #pcd = o3d.geometry.PointCloud()
+    #pcd.points = o3d.utility.Vector3dVector(points_new)
+    #list_for_vis.append(pcd)
+    #o3d.visualization.draw_geometries(list_for_vis)
 
-def get_cropped_boxes_gpu(pred_boxes_tensor, pred_labels, points_tensor, scores, parameter, pcd_gpu, count) : 
+    for obj_index in range(len(anno_objects)) :
+        translation_array = vars(anno_objects[obj_index])['center']
+        translation = torch.cuda.FloatTensor(vars(anno_objects[obj_index])['center'])
+
+        translation = torch.unsqueeze(translation, 1)
+
+        wlh = vars(anno_objects[obj_index])['wlh']
+        l = wlh[1] * (1 + parameter)
+        w = wlh[0] * (1 + parameter)
+        h = wlh[2] * (1 + parameter)
+        rotation = anno_objects[obj_index].orientation
+        z_axis = 1/2 * torch.cuda.FloatTensor([-h,-h,-h,-h,h,h,h,h])
+        bounding_box = torch.cuda.FloatTensor([
+            [l/2, l/2, -l/2, -l/2, l/2, l/2, -l/2, -l/2],
+            [w/2, -w/2, -w/2, w/2, w/2, -w/2, -w/2, w/2],
+            [-h/2, -h/2, -h/2, -h/2, h/2, h/2, h/2, h/2]])
+        r = R.from_rotvec(rotation.radians * np.asarray(rotation.axis))
+
+        keep = (points_new[:, 0] >= -(1/2*np.sqrt(l*l + w*w)*np.cos(rotation.radians - np.arctan(w/l)))  + translation_array[0]) & (points_new[:, 0] <= 1/2*np.sqrt(l*l + w*w)*np.cos(rotation.radians - np.arctan(w/l)) + translation_array[0]) & \
+            (points_new[:, 1] >= -(1/2*np.sqrt(l*l + w*w)*np.sin(rotation.radians + np.arctan(w/l))) + translation_array[1]) & (points_new[:, 1] <= (1/2*np.sqrt(l*l + w*w)*np.sin(rotation.radians + np.arctan(w/l))) + translation_array[1]) & \
+                (points_new[:, 2] >= -h/2 + translation_array[2]) & (points_new[:, 2] <= h/2 + translation_array[2])
+        box_points = points_new[keep, :]   
+
+        #pcd_crop = o3d.geometry.PointCloud()
+        #pcd_crop.points = o3d.utility.Vector3dVector(box_points)
+        #list_for_vis.append(pcd_crop)
+
+        eight_points = torch.hstack((translation,translation,translation,translation,translation,translation,translation,translation))
+        corner_box = bounding_box
+
+        points_np = np.asarray(r.apply(corner_box.transpose(0,1).cpu().detach()) + np.asarray(eight_points.transpose(0,1).cpu().detach()))
+        gt_classes_list.append(anno_objects[obj_index].name)
+        oriented_bounding_box1 = o3d.geometry.OrientedBoundingBox.create_from_points(o3d.utility.Vector3dVector(points_np))
+        #print(points_np)
+        new_bbox = oriented_bounding_box1.get_axis_aligned_bounding_box().get_box_points()
+        gt_boxes_list.append(np.asarray(oriented_bounding_box1.get_box_points()))
+
+        oriented_bounding_box = o3d.geometry.OrientedBoundingBox.create_from_points(new_bbox)        
+        one_crop = pcd_gpu.crop(oriented_bounding_box)
+        gt_points_list.append(np.asarray(one_crop.points))
+        #list_for_vis.append(one_crop)
+        #line_set_gt = o3d.geometry.LineSet(
+        #        points = oriented_bounding_box1.get_box_points(),
+        #        lines=o3d.utility.Vector2iVector(lines),
+        #    )
+        #line_set_gt.colors = o3d.utility.Vector3dVector(colors_gt)
+        #list_for_vis.append(line_set_gt)
+    #o3d.visualization.draw_geometries(list_for_vis)
+    #list_for_vis.append(line_set_gt)
+    return gt_boxes_list, gt_classes_list, gt_points_list
+
+def get_cropped_boxes_gpu(pred_boxes_tensor, pred_labels, points_tensor, scores, parameter, temp_point_tensor_x, temp_point_tensor_y, temp_point_tensor_z, list_for_vis) : 
     frame_dict = {}
-    """
-    list_for_vis = []
-    list_for_vis.append(pcd_gpu)
-
+    pred_boxes_list = []
+    pred_points_list = []
+    pred_classes_list = []
+    
     lines = [
                 [0, 1],
                 [0, 2],
@@ -325,29 +400,59 @@ def get_cropped_boxes_gpu(pred_boxes_tensor, pred_labels, points_tensor, scores,
                 [4, 7],
                 [5, 6]
             ]
-    """
-
+    colors_pred= [[0, 1, 0] for i in range(len(lines))]
+           
     for i in range(len(pred_boxes_tensor)) : 
-        if scores[i] < 0.4 : 
-            #box_coord = box_center_to_corner_pred_gpu(pred_boxes_tensor[i], parameter=0.15, device = device1)
-            box_coord = my_box_center_to_corner_pred(pred_boxes_tensor[i], parameter=0.15).cpu().detach().numpy()
-            points_test = o3d.utility.Vector3dVector(box_coord)
-            oriented_bounding_box = o3d.geometry.OrientedBoundingBox.create_from_points(points_test)
-            one_crop = pcd_gpu.crop(oriented_bounding_box)
+        box = pred_boxes_tensor[i]
+        translation = box[0:3]
+        #h, w, l = box[3], box[4], box[5]
+        l = box[3] * (1 + parameter)
+        w = box[4] * (1 + parameter)
+        h = box[5] * (1 + parameter)
+        rotation = -box[6]
+        
+        temp_tensor1 = 1/2*torch.sqrt(l*l + w*w)*torch.cos(rotation - torch.arctan(w/l))
+        temp_tensor2 = 1/2*torch.sqrt(l*l + w*w)*torch.sin(rotation + torch.arctan(w/l))
+        keep = (temp_point_tensor_x >= -1*temp_tensor1  + translation[0]) & (temp_point_tensor_x <= temp_tensor1 + translation[0]) & \
+            (temp_point_tensor_y >= -1 * temp_tensor2 + translation[1]) & (temp_point_tensor_y <= temp_tensor2 + translation[1]) & \
+                (temp_point_tensor_z >= -h/2 + translation[2]) & (temp_point_tensor_z <= h/2 + translation[2])
+       
+        box_points = np.asarray(points_tensor[keep, :].cpu().detach())
+        frame_dict[i] = (box_points, pred_labels[i])
+        
+        #pcd_crop = o3d.geometry.PointCloud()
+        #pcd_crop.points = o3d.utility.Vector3dVector(box_points)
+        #list_for_vis.append(pcd_crop)
+        
+        #box_coord = box_center_to_corner_pred_gpu(pred_boxes_tensor[i], parameter=0.15, device = device1)
+        box_coord = my_box_center_to_corner_pred(pred_boxes_tensor[i], parameter=0.15).cpu().detach().numpy()
+        #points_test = o3d.utility.Vector3dVector(box_coord)
+        #oriented_bounding_box = o3d.geometry.OrientedBoundingBox.create_from_points(points_test)
+        #one_crop = pcd_gpu.crop(oriented_bounding_box)
 
-            frame_dict[i] = (np.asarray(one_crop.points), pred_labels[i])
-    """
-            line_set_pred = o3d.geometry.LineSet(
-                points_test,
-                lines=o3d.utility.Vector2iVector(lines),
-            )
-            list_for_vis.append(line_set_pred)
-            
-            frame_dict[i] = (np.asarray(one_crop.points), pred_labels[i])
-    if count == 1 :
-        o3d.visualization.draw_geometries(list_for_vis)
-    """                
-    return frame_dict
+        #frame_dict[i] = (np.asarray(one_crop.points), pred_labels[i])
+
+        #line_set_pred = o3d.geometry.LineSet(
+        #    points=points_test,
+        #    lines=o3d.utility.Vector2iVector(lines),
+        #)
+        #if scores[i] < 0.4 : 
+        #    list_for_vis.append(line_set_pred)
+        #    #frame_dict[i] = (np.asarray(one_crop.points), pred_labels[i])
+        #else :
+        #    line_set_pred.colors = o3d.utility.Vector3dVector(colors_pred)
+        #    list_for_vis.append(line_set_pred)
+            #frame_dict[i] = (np.asarray(one_crop.points), pred_labels[i])
+        #if count == 1 :
+        #o3d.visualization.draw_geometries(list_for_vis)
+
+        pred_boxes_list.append(box_coord)
+        pred_points_list.append(box_points)
+        pred_classes_list.append(pred_labels[i])
+        
+        
+              
+    return frame_dict, pred_boxes_list, pred_classes_list, pred_points_list
 
 def get_cropped_boxes(pred_boxes, pred_labels, pcd, scores) : 
     frame_dict = {}
@@ -440,6 +545,89 @@ def check_classes(pred_boxes: np.array, pred_classes, gt_boxes: np.array, gt_cla
                                 boxes_list_gt.append(i)
                                 classes_list_gt.append(0)
                         if gt_classes[i] == 2 :
+                                boxes_list_gt.append(i)
+                                classes_list_gt.append(2)
+
+        return boxes_list_pred, classes_list_pred, boxes_list_gt, classes_list_gt
+
+def check_classes_nusc(pred_boxes: np.array, pred_classes, gt_boxes: np.array, gt_classes) : 
+        boxes_list_pred = list([])
+        classes_list_pred = list([])
+
+        boxes_list_gt = list([])
+        classes_list_gt = list([])
+
+        pred_poly = []
+        gt_poly = []
+
+        inter_gt = []
+
+        for i in range(len(pred_boxes)):
+                test_pcd = pred_boxes[i]
+                test_pcd = np.delete(test_pcd,2,1)
+                try :     
+                        hull = ConvexHull(test_pcd)
+                except :
+                        test_pcd = np.array([
+                                [0,0.001],
+                                [0,0.002],
+                                [0,0.003],
+                                [0.001,0.003],
+                                [0.002,0.003],
+                                [0.003,0.003],
+                                [0.002,0.001],
+                                [0.002,0]         
+                        ])
+                        hull = ConvexHull(test_pcd)
+                hull_indices = hull.vertices
+                hull_pts = test_pcd[hull_indices, :]
+                result = list(map(tuple, hull_pts))
+                p1 = Polygon(result)
+                pred_poly.append(p1)
+        
+        for j in range(len(gt_boxes)):
+                test_pcd = gt_boxes[j]
+                test_pcd = np.delete(test_pcd,2,1)
+                hull = ConvexHull(test_pcd)
+                hull_indices = hull.vertices
+                hull_pts = test_pcd[hull_indices, :]
+                result = list(map(tuple, hull_pts))
+                p1 = Polygon(result)
+                gt_poly.append(p1)
+                                 
+        for i in range(len(pred_boxes)) : 
+                if pred_classes[i] in [0,1,2,8] : 
+                        intersect_count = 0
+                        for j in range(len(gt_boxes)) : 
+                                if pred_poly[i].intersects(gt_poly[j]) :
+                                        if (pred_poly[i].intersection(gt_poly[j]).area / pred_poly[i].union(gt_poly[j]).area) > 0.4 :
+                                                inter_gt.append(j)
+                                                #print(i, j, iou3d(pred_boxes[i], gt_boxes[j]), pred_classes[i], gt_classes[j])
+                                                intersect_count += 1
+                                                if pred_classes[i] in [0,1,2] :
+                                                        if "vehicle" in gt_classes[j] : 
+                                                                classes_list_pred.append(0)
+                                                        else : 
+                                                                classes_list_pred.append(1)
+                                                else :
+                                                        if "pedestrian" in gt_classes[j] : 
+                                                                classes_list_pred.append(2)
+                                                        else : 
+                                                                classes_list_pred.append(3)
+                                                break
+                        if intersect_count == 0 : 
+                                if pred_classes[i] == 0 : 
+                                        classes_list_pred.append(1)
+                                else :
+                                        classes_list_pred.append(3)
+                        boxes_list_pred.append(i)
+
+        for i in range(len(gt_boxes)) :
+                if i not in inter_gt : 
+                        if "vehicle" in gt_classes[i] :
+                                boxes_list_gt.append(i)
+                                classes_list_gt.append(0)
+                        if "pedestrian" in gt_classes[i] :
                                 boxes_list_gt.append(i)
                                 classes_list_gt.append(2)
 
@@ -572,6 +760,18 @@ def throw_false(class1_results, class1_idx, class1_false_list, class2_results, c
         my_scores = torch.unsqueeze(scores[0],0)
         my_label_preds = torch.unsqueeze(label_preds[0],0)
     return my_box3d_lidar, my_scores, my_label_preds
+
+def voxelization(points, pc_range, voxel_size):    
+    keep = (points[:, 0] >= pc_range[0]) & (points[:, 0] <= pc_range[3]) & \
+        (points[:, 1] >= pc_range[1]) & (points[:, 1] <= pc_range[4]) & \
+            (points[:, 2] >= pc_range[2]) & (points[:, 2] <= pc_range[5])
+    points = points[keep, :]    
+    coords = ((points[:, [2, 1, 0]] - pc_range[[2, 1, 0]]) /  voxel_size[[2, 1, 0]]).to(torch.int64)
+    unique_coords, inverse_indices = coords.unique(return_inverse=True, dim=0)
+
+    voxels = scatter_mean(points, inverse_indices, dim=0)
+    return voxels, unique_coords
+
 
 def throw_false_4cls(class_results, class_idx, class_false_list, box3d_lidar, scores, label_preds) : 
     pred_labels_copy = label_preds
@@ -732,14 +932,15 @@ def main():
     counter = 0
 
     data_list = []
-
+    final_classes = []
+    final_boxes = []
     for i, data_batch in enumerate(data_loader) : 
         #print(data_batch['metadata'][0]['token'])
         data_list.append(data_batch)
 
     #for i, data_batch in enumerate(data_loader):
-    for i in range(len(data_list)) : 
-        data_batch = next((x for x in data_list if x['metadata'][0]['token'] == 'seq_0_frame_'+str(i)+'.pkl'), None)
+    #for i in range(len(data_list)) : 
+        #data_batch = next((x for x in data_list if x['metadata'][0]['token'] == 'seq_0_frame_'+str(i)+'.pkl'), None)
         #print(data_batch['metadata'][0]['token'], i)
         counter += 1
 
@@ -765,20 +966,46 @@ def main():
                 ]:
                     output[k] = v.to(cpu_device)
             
+            my_sample =  nusc.get('sample', token)
+            #lidar = nusc.get('sample_data', my_sample['data']['LIDAR_TOP'])
+        
+            #my_annotation_metadata =  nusc.get('sample_annotation', my_sample['anns'][10])
+            #lidar = nusc.get('sample_data', my_sample['data']['LIDAR_TOP'])
+            #pose = nusc.get('ego_pose', lidar['ego_pose_token'])
+            #print(pose)
+            #print(my_annotation_metadata)
+            #print("AAAAAAAAAAAAAAAAAAAAAAAAA")
+            
             starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
             starter.record()
             ### my code starts here
+
+            list_vis = []
             
             starter_pcd, ender_pcd = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
             starter_pcd.record()
-            pc_name = os.path.join('./data/Waymo/val/lidar', token)
-            points = pickle.load(open(pc_name, 'rb'))['lidars']['points_xyz']
-            #points = data_batch['points'][:,1:4]
-            points_tensor = torch.cuda.FloatTensor(points)
+            #pc_name = os.path.join('./data/Waymo/val/lidar', token)
+            #points = pickle.load(open(pc_name, 'rb'))['lidars']['points_xyz']
+
+            points = data_batch['points'][:,1:4].cpu().detach().numpy() 
+            #points_tensor = torch.cuda.FloatTensor(points)
+
+            points_tensor = data_batch['points'][:,1:4].to(device='cuda:0')
+
+            point_tensor_x = points_tensor[:, 0]
+            point_tensor_y = points_tensor[:, 1]
+            point_tensor_z = points_tensor[:, 2]
+
             pcd = o3d.geometry.PointCloud()
             pcd.points = o3d.utility.Vector3dVector(points)
             #pc_name = os.path.join('./data/Waymo/val/lidar', token)
             #points = pickle.load(open(pc_name, 'rb'))['lidars']['points_xyz']
+
+            #list_vis.append(pcd)
+
+            gt_boxes_list, gt_classes_list, gt_points_list = my_box_center_to_corner_gt(my_sample, 0.15, pcd, nusc, list_for_vis=list_vis)
+            #print(len(gt_boxes_list), len(gt_classes_list))
+
             ender_pcd.record()
             torch.cuda.synchronize()
             time_pcd.append(starter_pcd.elapsed_time(ender_pcd))
@@ -796,75 +1023,45 @@ def main():
             
             #print(len(gt_boxes), len(gt_classes), gt_boxes[2].shape)
 
-            """
-            lines = [
-                [0, 1],
-                [0, 2],
-                [1, 3],
-                [2, 3],
-                [4, 5],
-                [4, 6],
-                [5, 7],
-                [6, 7],
-                [0, 4],
-                [1, 5],
-                [2, 6],
-                [3, 7],
-                [0, 3],
-                [1, 2],
-                [4, 7],
-                [5, 6]
-            ]
-            """
-            """
-            visual = o3d.visualization.Visualizer()
-            visual.create_window()
-            visual.get_render_option().line_width = 2
-            visual.get_render_option().point_size = 1
-            visual.add_geometry(pcd)
-             
-            
-            colors_gt = [[1, 0, 0] for i in range(len(lines))]
-            colors_pred= [[0, 1, 0] for i in range(len(lines))]
-            """
-            """
-            for i in range(len(gt_boxes)) : 
-
-                line_set_pred = o3d.geometry.LineSet(
-                    points = o3d.utility.Vector3dVector(gt_boxes[i]),
-                    lines=o3d.utility.Vector2iVector(lines),
-                )
-                line_set_pred.colors = o3d.utility.Vector3dVector(colors_gt)
-                visual.add_geometry(line_set_pred)
-            """
-            
             
             pred_labels = output['label_preds']
             pred_scores = output['scores']
-            pred_boxes_tensor = output['box3d_lidar']
+            pred_boxes_tensor = output['box3d_lidar'].to(device='cuda:0')
 
             
             starter_box, ender_box = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
             starter_box.record()
-            boxes_dict = get_cropped_boxes_gpu(pred_boxes_tensor, pred_labels, points_tensor, pred_scores,parameter=0.15, pcd_gpu=pcd, count=counter)
+            boxes_dict, pred_boxes_list, pred_classes_list, pred_points_list = get_cropped_boxes_gpu(pred_boxes_tensor, pred_labels, points_tensor, pred_scores,parameter=0.15, temp_point_tensor_x=point_tensor_x, temp_point_tensor_y=point_tensor_y, temp_point_tensor_z=point_tensor_z, list_for_vis=list_vis)
+            #print(len(pred_boxes_list), len(pred_classes_list))
             #pred_boxes = get_boxes_from_pred_frame({'box3d_lidar' : output['box3d_lidar']}, parameter=0.15)
             ender_box.record()
             torch.cuda.synchronize()
             time_box.append(starter_box.elapsed_time(ender_box))
+
+            boxes_list_pred, classes_list_pred, boxes_list_gt, classes_list_gt = check_classes_nusc(pred_boxes_list, pred_classes_list, gt_boxes_list, gt_classes_list)
             
-            """
-            for i in range(len(pred_boxes)) : 
-                
-                line_set_pred = o3d.geometry.LineSet(
-                    points = o3d.utility.Vector3dVector(pred_boxes[i]),
-                    lines=o3d.utility.Vector2iVector(lines),
-                )
-                if pred_scores[i] < 0.4 : 
-                    visual.add_geometry(line_set_pred)
-                else : 
-                    line_set_pred.colors = o3d.utility.Vector3dVector(colors_pred)
-                    visual.add_geometry(line_set_pred)
-            """
+            #print(len(classes_list_gt), len(classes_list_pred), len(gt_classes_list), len(pred_classes_list))
+            #print(len(boxes_list_gt), len(boxes_list_pred), len(gt_boxes_list), len(pred_boxes_list))
+            #print(len(gt_points_list), len(pred_points_list))
+            
+            for i in range(len(boxes_list_pred)) : 
+                    final_boxes.append(pred_points_list[boxes_list_pred[i]])
+                    final_classes.append(classes_list_pred[i])
+                    #print(classes_list_pred[i])
+            for i in range(len(boxes_list_gt)) : 
+                    #points = o3d.utility.Vector3dVector(gt_boxes_list[boxes_list_gt[i]])
+                    #oriented_bounding_box = o3d.geometry.OrientedBoundingBox.create_from_points(points)
+                    #one_crop = pcd.crop(oriented_bounding_box)
+                    final_boxes.append(gt_points_list[boxes_list_gt[i]])
+                    final_classes.append(classes_list_gt[i])
+                    #print(classes_list_gt[i])
+            for i in range(len(final_classes)) : 
+                pcd_crop = o3d.geometry.PointCloud()
+                pcd_crop.points = o3d.utility.Vector3dVector(final_boxes[i])
+                #list_vis.append(pcd_crop)
+            #o3d.visualization.draw_geometries(list_vis)
+            
+            
             
             starter_crop, ender_crop = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
             starter_crop.record()
@@ -886,7 +1083,7 @@ def main():
 
             starter_cls2, ender_cls2 = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
             starter_cls2.record()
-            class_results, class_idx, class_false_list = PAConv_test_4cls(boxes_dict, 30, model_4cls, device_PAConv)
+            #class_results, class_idx, class_false_list = PAConv_test_4cls(boxes_dict, 30, model_4cls, device_PAConv)
             #class2_results, class2_idx, class2_false_list = PAConv_test(boxes_dict, 'pedestrian', 30, model_pedestrians, device_PAConv)
             ender_cls2.record()
             torch.cuda.synchronize()
@@ -898,7 +1095,7 @@ def main():
 
             starter_throw, ender_throw = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
             starter_throw.record()
-            my_box3d_lidar, my_scores, my_label_preds = throw_false_4cls(class_results, class_idx, class_false_list, output['box3d_lidar'], output['scores'], output['label_preds'])
+            #my_box3d_lidar, my_scores, my_label_preds = throw_false_4cls(class_results, class_idx, class_false_list, output['box3d_lidar'], output['scores'], output['label_preds'])
             #my_box3d_lidar, my_scores, my_label_preds = throw_false(class1_results, class1_idx, class1_false_list, class2_results, class2_idx, class2_false_list, output['box3d_lidar'], output['scores'], output['label_preds'])
             ender_throw.record()
             torch.cuda.synchronize()
@@ -910,9 +1107,11 @@ def main():
             my_time.append(curr_time)
             #print(len(output['box3d_lidar']))
 
-            output['box3d_lidar'] = my_box3d_lidar
-            output['scores'] = my_scores
-            output['label_preds'] = my_label_preds
+            #output['box3d_lidar'] = my_box3d_lidar
+            #output['scores'] = my_scores
+            #output['label_preds'] = my_label_preds
+
+            #o3d.visualization.draw_geometries(list_vis)
             #print(len(output['box3d_lidar']))
         
             #visual.capture_screen_image('./data/screenshots/4_cls_nusc_' + token[0:-4] + '.jpg', do_render=True)
@@ -929,6 +1128,12 @@ def main():
     synchronize()
 
     all_predictions = all_gather(detections)
+
+    with open(os.path.join(args.work_dir, 'boxes.pkl'), 'wb') as f:
+        pickle.dump(final_boxes, f)
+
+    with open(os.path.join(args.work_dir, 'classes.pkl'), 'wb') as f:
+        pickle.dump(final_classes, f)
 
     print("\n Total time per frame: ", (time_end -  time_start) / (end - start))
     print("\n Time for classification module per frame: ", np.mean(my_time))
